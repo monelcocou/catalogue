@@ -26,6 +26,12 @@ class Produit
     #[ORM\JoinColumn(nullable: false)]
     private $categorie;
 
+
+    public function __construct()
+    {
+        $this->setIsDisponible(true);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
