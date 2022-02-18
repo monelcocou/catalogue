@@ -51,7 +51,7 @@ Encore
 
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';cls
+        config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
 
