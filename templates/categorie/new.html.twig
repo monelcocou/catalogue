@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+
+<div class="container">
+        <div class="card">
+        <div class="card-header">
+            <h3>Saisie de la catégorie</h3>
+        </div>
+
+        <div>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="mt-4">
+                {{ form_label(form.libelle, null, { label: 'Catégorie du produit' }) }}
+            </div>
+            <div>
+                {{ form_widget(form.libelle,
+                    {
+                        'attr':{'class':'form-control'}
+                    }) }}
+            </div>
+
+            <button type="submit" class="btn btn-secondary mt-4 mb-4 m-lg-4">Enregistrer</button>
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
