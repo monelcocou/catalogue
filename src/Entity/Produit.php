@@ -13,7 +13,7 @@ class Produit
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: 'string', length: 100)]
     private $libelle;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -37,12 +37,12 @@ class Produit
         return $this->id;
     }
 
-    public function getLibelle(): ?float
+    public function getLibelle(): ?string
     {
         return $this->libelle;
     }
 
-    public function setLibelle(float $libelle): self
+    public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
 
@@ -83,5 +83,9 @@ class Produit
         $this->categorie = $categorie;
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->categorie;
     }
 }
