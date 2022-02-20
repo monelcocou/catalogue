@@ -37,9 +37,15 @@
                             <li class="nav-item">
                                 <a class="nav-link active text-white" href="{{ path('produit') }}">Produit</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active text-white" href="#" tabindex="-1" aria-disabled="false">Utilisateur</a>
-                            </li>
+
+                            {% for role in app.user.roles %}
+                                {% if role == 'ROLE_ADMIN' %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active text-white" href="#" tabindex="-1" aria-disabled="false">Utilisateur</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
                         </ul>
 
                         <li class="nav-item dropdown">

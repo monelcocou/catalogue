@@ -25,13 +25,13 @@ class AppFixtures extends Fixture
     {
         $user1 = new User();
         $user1->setEmail('gestionnaire@gmail.com');
-        $user1->setPassword($this->crypteMonPassword('12345'));
+        $user1->setPassword($this->crypteMonPassword('123456'));
         $user1->setRoles(['ROLE_GESTIONNAIRE']);
         $manager->persist($user1);
 
         $user2 = new User();
         $user2->setEmail('admin@gmail.com');
-        $user2->setPassword($this->crypteMonPassword('12345'));
+        $user2->setPassword($this->crypteMonPassword('123456'));
         $user2->setRoles(['ROLE_ADMIN']);
         $manager->persist($user2);
 
