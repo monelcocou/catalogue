@@ -14,42 +14,52 @@
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
 
-                    {{ form(form) }};
+{#                    {{ form(form) }};#}
 
-{#                <div class="mt-4">#}
-{#                    {{ form_label(form.libelle, null, { label: 'Libellé' }) }}#}
-{#                </div>#}
-{#                <div>#}
-{#                    {{ form_widget(form.libelle,#}
-{#                        {#}
-{#                            'attr':{'class':'form-control'}#}
-{#                        }) }}#}
-{#                </div>#}
-
-
-
-{#                <div class="mt-4">#}
-{#                    {{ form_label(form.description, null, { label: 'Description' }) }}#}
-{#                </div>#}
-{#                <div>#}
-{#                    {{ form_widget(form.description,#}
-{#                        {#}
-{#                            'attr':{'class':'form-control'}#}
-{#                        }) }}#}
-{#                </div>#}
+                <div class="mt-4">
+                    {{ form_label(form.libelle, null, { label: 'Libellé' }) }}
+                </div>
+                <div>
+                    {{ form_widget(form.libelle,
+                        {
+                            'attr':{'class':'form-control'}
+                        }) }}
+                </div>
 
 
 
-{#                <div class="mt-4">#}
-{#                    {{ form_rest(form) }}#}
-{#                    {{ form_label(form.categorie, null, { label: 'Catégorie' }) }}#}
-{#                </div>#}
-{#                <div>#}
-{#                    {{ form_widget(form.categorie,#}
-{#                        #}{#}#}
-{#                            'attr':{'class':'form-control'}#}
-{#                        }) }}#}
-{#                </div>#}
+                <div class="mt-4">
+                    {{ form_label(form.description, null, { label: 'Description' }) }}
+                </div>
+                <div>
+                    {{ form_widget(form.description,
+                        {
+                            'attr':{'class':'form-control'}
+                        }) }}
+                </div>
+
+
+                <div class="mt-4">
+                    {{ form_label(form.prix, null, { label: 'Prix' }) }}
+                </div>
+                <div>
+                    {{ form_widget(form.prix,
+                        {
+                            'attr':{'class':'form-control'}
+                        }) }}
+                </div>
+
+
+
+                <div class="mt-4">
+                    {{ form_label(form.categorie, null, { label: 'Catégorie' }) }}
+                </div>
+                <div>
+                    {{ form_widget(form.categorie,
+                        {
+                            'attr':{'class':'form-control'}
+                        }) }}
+                </div>
 
                 <button type="submit" class="btn btn-secondary mt-4 mb-4">Enregistrer</button>
                 {{ form_end(form) }}

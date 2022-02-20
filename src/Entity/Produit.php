@@ -26,6 +26,9 @@ class Produit
     #[ORM\JoinColumn(nullable: false)]
     private $categorie;
 
+    #[ORM\Column(type: 'float')]
+    private $prix;
+
 
     public function __construct()
     {
@@ -87,5 +90,17 @@ class Produit
 
     public function __toString() {
         return $this->categorie;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
     }
 }

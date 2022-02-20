@@ -17,16 +17,9 @@ class ProduitType extends AbstractType
         $builder
             ->add('libelle', TextType::class, ['mapped'=>true])
             ->add('description', TextareaType::class, ['mapped'=>true])
-            ->add('isDisponible')
-//            ->add('categorie')
-//            ->add('categorie', CollectionType::class,
-//               [
-//                    'type'         => new CategorieType(),
-//                    'allow_add' => true,
-//                    'options'      => array('data_class' => 'App\Entity\Categorie'),
-//                    'by_reference' => false,
-//
-//                ])
+            ->add('prix', TextType::class, ['mapped'=>true])
+//            ->add('isDisponible')
+            ->add('categorie')
         ;
     }
 

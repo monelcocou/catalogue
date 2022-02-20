@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Libellé</th>
+                <th>actions</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,10 @@
                 <tr>
                     <th scope="row">{{ categorie.id }}</th>
                     <td>{{ categorie.libelle }}</td>
+                   <td>
+                        <a href="#" class="btn btn-danger">Supprimer</a>
+                        <a href="#" class="btn btn-success">Modifier</a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>
