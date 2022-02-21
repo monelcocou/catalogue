@@ -32,9 +32,9 @@ class CategorieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $categorie->setLibelle(
-                $form->get('libelle')->getData()
-            );
+//            $categorie->setLibelle(
+//                $form->get('libelle')->getData()
+//            );
 
             $entityManager->persist($categorie);
             $entityManager->flush();

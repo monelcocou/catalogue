@@ -17,7 +17,7 @@ class ProduitController extends AbstractController
     public function index(ProduitRepository $produitRepository): Response
     {
         return $this->render('produit/index.html.twig', [
-            'produits' => $produitRepository->findBy([], ['prix'=>'asc']),
+            'produits' => $produitRepository->findBy([], ['prix'=>'desc']),
 
         ]);
     }
@@ -34,10 +34,15 @@ class ProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $produit->setLibelle($form->get('libelle')->getData());
-            $produit->setDescription($form->get('description')->getData());
-            $produit->setCategorie($form->get('categorie')->getData());
-            $produit->setPrix($form->get('prix')->getData());
+//            dump($request);
+//            dump($request->request->all('produit'));
+//            dd($form);
+
+//            $produit->setLibelle($form->get('libelle')->getData());
+//            $produit->setDescription($form->get('description')->getData());
+//            $produit->setCategorie($form->get('categorie')->getData());
+//            $produit->setPrix($form->get('prix')->getData());
+            dd($produit);
 
             $entityManager->persist($produit);
             $entityManager->flush();

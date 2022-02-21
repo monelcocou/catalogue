@@ -25,8 +25,11 @@ class ProduitType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+//        dump($resolver);
         $resolver->setDefaults([
             'data_class' => Produit::class,
         ]);
+//        dd($resolver);
+
     }
 }
