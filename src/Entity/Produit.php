@@ -6,8 +6,11 @@ use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Produit
 {
+    use Horodatage;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -32,7 +35,7 @@ class Produit
 
     public function __construct()
     {
-        $this->setIsDisponible(true);
+        //$this->setIsDisponible(true);
     }
 
     public function getId(): ?int
@@ -103,4 +106,7 @@ class Produit
 
         return $this;
     }
+
+
+
 }

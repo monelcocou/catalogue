@@ -13,13 +13,41 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProduitController extends AbstractController
 {
-    #[Route('/produit', name: 'produit')]
+//    #[Route('/produit/{type}', name: 'produit')]
+//    public function showAll(ProduitRepository $produitRepository, $type): Response
+//    {
+//        if ($type == 'all') {
+//            $response = $this->render('produit/index.html.twig', [
+//                'produits' => $produitRepository->findBy([], ['prix' => 'desc']),
+//
+//            ]);
+//        }
+//
+//        if ($type == 'dispo') {
+//            $response = $this->render('produit/index.html.twig', [
+//                'produits' => $produitRepository->findBy(["isDisponible" => true], ['prix' => 'desc']),
+//            ]);
+//        }
+//
+//        return $response;
+//    }
+
+    #[Route('/produit/all', name: 'produit_all')]
     public function index(ProduitRepository $produitRepository): Response
     {
         return $this->render('produit/index.html.twig', [
-            'produits' => $produitRepository->findBy([], ['prix'=>'desc']),
+            'produits' => $produitRepository->findBy([], ['prix' => 'desc']),
 
         ]);
+    }
+
+    #[Route('/produit/dispo', name: 'produit_dispo')]
+    public function show(ProduitRepository $produitRepository): Response
+    {
+       return $this->render('produit/index.html.twig', [
+                'produits' => $produitRepository->findBy(["isDisponible"=>true], ['prix' => 'desc']),
+
+            ]);
     }
 
 
@@ -34,16 +62,6 @@ class ProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-//            dump($request);
-//            dump($request->request->all('produit'));
-//            dd($form);
-
-//            $produit->setLibelle($form->get('libelle')->getData());
-//            $produit->setDescription($form->get('description')->getData());
-//            $produit->setCategorie($form->get('categorie')->getData());
-//            $produit->setPrix($form->get('prix')->getData());
-            dd($produit);
-
             $entityManager->persist($produit);
             $entityManager->flush();
 

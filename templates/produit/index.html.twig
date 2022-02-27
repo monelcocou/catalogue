@@ -8,8 +8,18 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+    <div class="row">
+        <div class="col-3">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Produits disponibles</option>
+                <option value="1">Tous les produits</option>
+            </select>
+        </div>
+    </div>
+
+
     <div>
-        <a class="btn btn-success" href="{{ path('app_produit_new') }}">Ajouter un nouveau produit</a>
+        <a class="btn btn-success mt-5" href="{{ path('app_produit_new') }}">Ajouter un nouveau produit</a>
     </div>
 
 
@@ -22,6 +32,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Catégorie</th>
+                <th scope="col">isDispo</th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -34,9 +45,31 @@
                     <td>{{ produit.prix }}</td>
                     <td>{{ produit.categorie }}</td>
                     <td>
-                        <a href="#" class="btn btn-danger">Supprimer</a>
-                        <a href="#" class="btn btn-success">Modifier</a>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+                               {% if produit.isDisponible == true %}
+                                   checked
+                               {% endif %}
+                            >
+                        </div>
                     </td>
+{#                    <td>#}
+{#                        <a href="#" class="btn btn-danger">Supprimer</a>#}
+{#                        <a href="#" class="btn btn-success">Modifier</a>#}
+{#                        <button class="btn btn-success">...</button>#}
+{#                    </td>#}
+                    <td>
+                        <ul class="nav-item dropdown">
+                            <a class="btn btn-success" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                ...
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDr/opdown">
+                                <li><a class="dropdown-item" href="{{ path('profile') }}">Modifier</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_logout') }}" style="color: red">Supprimer</a></li>
+                            </ul>
+                        </ul>
+                    </td>
+
                 </tr>
             {% else %}
                 <tr>

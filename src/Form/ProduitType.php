@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,18 +19,17 @@ class ProduitType extends AbstractType
             ->add('libelle', TextType::class, ['mapped'=>true])
             ->add('description', TextareaType::class, ['mapped'=>true])
             ->add('prix', TextType::class, ['mapped'=>true])
-//            ->add('isDisponible')
+            ->add('isDisponible')
             ->add('categorie')
+            ->add('Valider', SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-//        dump($resolver);
         $resolver->setDefaults([
             'data_class' => Produit::class,
         ]);
-//        dd($resolver);
 
     }
 }

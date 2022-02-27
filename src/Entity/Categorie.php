@@ -8,8 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Categorie
 {
+
+    use Horodatage;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -20,6 +24,8 @@ class Categorie
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class)]
     private $produits;
+
+
 
     public function __construct()
     {
@@ -74,8 +80,14 @@ class Categorie
     }
 
 
+
+
     public function __toString(): string
     {
         return $this->libelle;
     }
+
+
+
+
 }
