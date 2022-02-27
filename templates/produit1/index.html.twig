@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libellé</th>
+                <th>Description</th>
+                <th>IsDisponible</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+{#                <th>CreatedAt</th>#}
+{#                <th>UpdatedAt</th>#}
+{#                <th>DeletedAt</th>#}
+{#                <th>CreatedBy</th>#}
+{#                <th>UpdatedBy</th>#}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.libelle }}</td>
+                <td>{{ produit.description }}</td>
+                <td>
+{#                    {{ produit.isDisponible ? 'Yes' : 'No' }}#}
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" disabled
+                                {% if produit.isDisponible == true %}
+                                    checked
+                                {% endif %}
+                        >
+                    </div>
+                </td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.categorie }}</td>
+{#                <td>{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ produit.deletedAt ? produit.deletedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ produit.createdBy }}</td>#}
+{#                <td>{{ produit.updatedBy }}</td>#}
+                <td>
+                    <a class="btn btn-info" href="{{ path('produit1_show', {'id': produit.id}) }}"><i class="bi bi-columns-gap"></i> Afficher</a>
+                    <a class="btn btn-warning" href="{{ path('produit1_edit', {'id': produit.id}) }}"><i class="bi bi-pencil-square"></i> Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun produit disponible</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('produit1_new') }}"><i class="bi bi-plus-circle"></i> Ajouter un nouveau produit</a>
+{% endblock %}

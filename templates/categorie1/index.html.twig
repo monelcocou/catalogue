@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <h1>Liste des catégories</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libellé</th>
+{#                <th>CreatedAt</th>#}
+{#                <th>UpdatedAt</th>#}
+{#                <th>DeletedAt</th>#}
+{#                <th>CreatedBy</th>#}
+{#                <th>UpdatedBy</th>#}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.libelle }}</td>
+{#                <td>{{ categorie.createdAt ? categorie.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ categorie.updatedAt ? categorie.updatedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ categorie.deletedAt ? categorie.deletedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ categorie.createdBy }}</td>#}
+{#                <td>{{ categorie.updatedBy }}</td>#}
+                <td>
+                    <a class="btn btn-info" href="{{ path('categorie1_show', {'id': categorie.id}) }}"> <i class="bi bi-columns-gap"></i> Afficher</a>
+                    <a class="btn btn-warning" href="{{ path('categorie1_edit', {'id': categorie.id}) }}"><i class="bi bi-pencil-square"></i> Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune catégorie enregistrée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('categorie1_new') }}"><i class="bi bi-plus-circle"></i> Créer une catégorie</a>
+{% endblock %}

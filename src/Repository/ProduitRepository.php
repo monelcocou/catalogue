@@ -19,6 +19,34 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    public function findAllProduitsInf($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.prix < :val')
+            ->andWhere('p.deletedAt is null')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+//            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+    public function findAllProduitsSup($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.prix > :val')
+            ->andWhere('p.deletedAt is null')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+//            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */
