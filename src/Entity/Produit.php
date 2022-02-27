@@ -4,12 +4,24 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Blameable\Traits\BlameableEntity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+/**
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
+ */
 class Produit
 {
-    use Horodatage;
+    //use Horodatage;
+
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+    use BlameableEntity;
+
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
