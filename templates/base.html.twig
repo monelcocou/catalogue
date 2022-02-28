@@ -10,6 +10,7 @@
         </title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -17,6 +18,8 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+
     </head>
 
     <body>
@@ -43,7 +46,7 @@
                             {% for role in app.user.roles %}
                                 {% if role == 'ROLE_ADMIN' %}
                                     <li class="nav-item">
-                                        <a class="nav-link active text-white" href="#" tabindex="-1" aria-disabled="false">Utilisateur</a>
+                                        <a class="nav-link active text-white" href="{{ path('app_users') }}" tabindex="-1" aria-disabled="false">Utilisateur</a>
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -69,6 +72,36 @@
         {% block body %}
 
         {% endblock %}
+
+
+{#        <!-- Button trigger modal -->#}
+{#        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">#}
+{#            Launch demo modal#}
+{#        </button>#}
+
+{#        <!-- Modal -->#}
+{#        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">#}
+{#            <div class="modal-dialog modal-dialog-centered" role="document">#}
+{#                <div class="modal-content">#}
+{#                    <div class="modal-header">#}
+{#                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>#}
+{#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                            <span aria-hidden="true">&times;</span>#}
+{#                        </button>#}
+{#                    </div>#}
+{#                    <div class="modal-body">#}
+{#                        ...#}
+{#                    </div>#}
+{#                    <div class="modal-footer">#}
+{#                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+{#                        <button type="button" class="btn btn-primary">Save changes</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </body>
+
+
+
 
 </html>
