@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Produit;
 use App\Form\Produit1Type;
 use App\Repository\ProduitRepository;
+use App\Service\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,21 +18,21 @@ class Produit1Controller extends AbstractController
     #[Route('/', name: 'produit1_index', methods: ['GET'])]
     public function index(ProduitRepository $produitRepository): Response
     {
+//        dd($this->getUser());
         if (in_array("ROLE_ADMIN", $this->getUser()->getRoles())) // ADMIN
         {
-//            return $this->render('produit1/index.html.twig', [
-//                'produits' => $produitRepository->findBy(['deletedAt'=>null]),
-//            ]);
-
-
-//            return $this->render('produit1/index.html.twig', [
-//                'produits' => $produitRepository->findAllProduitsInf(400000),
-//            ]);
-
-
             return $this->render('produit1/index.html.twig', [
-                'produits' => $produitRepository->findAllProduitsSup(400000),
+                'produits' => $produitRepository->findBy(['deletedAt'=>null]),
             ]);
+
+//            return $this->render('produit1/index.html.twig', [
+//                'produits' => $produitRepository->findAllProduitsInf(20000),
+//            ]);
+
+
+//            return $this->render('produit1/index.html.twig', [
+//                'produits' => $produitRepository->findAllProduitsSup(400000),
+//            ]);
         }
         else
         {
@@ -89,11 +90,15 @@ class Produit1Controller extends AbstractController
     }
 
     #[Route('/{id}', name: 'produit1_delete', methods: ['POST'])]
-    public function delete(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    public function delete(Mailer $mailer, Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {
             $entityManager->remove($produit);
             $entityManager->flush();
+
+
+           // $mailer->sendDeleteMessage($user);
+
         }
 
         return $this->redirectToRoute('produit1_index', [], Response::HTTP_SEE_OTHER);

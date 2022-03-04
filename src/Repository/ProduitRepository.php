@@ -22,9 +22,9 @@ class ProduitRepository extends ServiceEntityRepository
     public function findAllProduitsInf($value)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.prix < :val')
+            ->andWhere('p.prix < :charlotte')
             ->andWhere('p.deletedAt is null')
-            ->setParameter('val', $value)
+            ->setParameter('charlotte', $value)
             ->orderBy('p.id', 'ASC')
 //            ->setMaxResults(10)
             ->getQuery()
