@@ -8,12 +8,18 @@ use Gedmo\Blameable\Traits\BlameableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 /**
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
  */
+#[UniqueEntity(
+    fields: ['libelle'],message: 'Le produit {{value}} existe déjà'
+)]
 class Produit
 {
     //use Horodatage;
@@ -28,6 +34,8 @@ class Produit
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank(message: "Ce champ ne doit pas être vide")]
+    #[Assert\Length(min: 2, minMessage: "La désignation doit comporter au moins 2 caractères")]
     #[ORM\Column(type: 'string', length: 100)]
     private $libelle;
 

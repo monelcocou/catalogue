@@ -7,6 +7,8 @@ use App\Form\Produit1Type;
 use App\Repository\ProduitRepository;
 use App\Service\Mailer;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +52,9 @@ class Produit1Controller extends AbstractController
         $form = $this->createForm(Produit1Type::class, $produit);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $produit->setPrix($form->get('prixUnitaire')->getData());
             $entityManager->persist($produit);
             $entityManager->flush();
 
@@ -78,6 +82,7 @@ class Produit1Controller extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $produit->setPrix($form->get('prixUnitaire')->getData());
             $entityManager->flush();
 
             return $this->redirectToRoute('produit1_index', [], Response::HTTP_SEE_OTHER);
@@ -90,6 +95,8 @@ class Produit1Controller extends AbstractController
     }
 
     #[Route('/{id}', name: 'produit1_delete', methods: ['POST'])]
+//    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas le droit de supprimer un produit")]
+    #[Security("is_granted('ROLE_ADMIN') and is_granted('ROLE_CHARLOTTE')")]
     public function delete(Mailer $mailer, Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {

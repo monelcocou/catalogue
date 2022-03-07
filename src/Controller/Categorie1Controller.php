@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Form\Categorie1Type;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -69,6 +70,7 @@ class Categorie1Controller extends AbstractController
     }
 
     #[Route('/{id}', name: 'categorie1_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas le droit de supprimer une catégorie")]
     public function delete(Request $request, Categorie $categorie, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
